@@ -1,13 +1,16 @@
-# Write a terraform code to create an app registration with name TestApp75
-
-provider "azuread" {
-  version = "~> 2.0"
+# 1. The Provider
+terraform {
+  required_providers {
+    azuread = {
+      source  = "hashicorp/azuread"
+      version = "~> 2.53"
+    }
+  }
 }
 
-resource "azuread_application" "test_app" {
-  display_name = "TestApp75"
-}
+provider "azuread" {}
 
-output "application_id" {
-  value = azuread_application.test_app.application_id
+# 2. Create the Application
+resource "azuread_application" "gh_app" {
+  display_name = "KendraLustApp"
 }
